@@ -36,9 +36,13 @@ public class Player : MonoBehaviour
         float xScreenPos = camera.transform.position.x;
         float minBound = camera.transform.position.x - width / 2f;
         float maxBound = camera.transform.position.x + width / 2f;
-        if (transform.position.x > maxBound || transform.position.x < minBound)
+        if (transform.position.x > maxBound)
         {
-            transform.position = new Vector2(-transform.position.x, transform.position.y);
+            transform.position = new Vector2(minBound, transform.position.y);
+        }
+        else if (transform.position.x < minBound)
+        {
+            transform.position = new Vector2(maxBound, transform.position.y);
         }
     }
 
