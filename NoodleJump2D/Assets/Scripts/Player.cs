@@ -11,18 +11,35 @@ public class Player : MonoBehaviour
     
     private Rigidbody2D rb;
     private SpriteRenderer sr;
+    private Camera camera;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
+
+        camera = Camera.main;
     }
 
     // Update is called once per frame
     void Update()
     {
+        ScreenWrap();
+    }
 
+    void ScreenWrap()
+    {
+        float height = 2f * camera.orthographicSize;
+        float width = height * camera.aspect;
+
+        float xScreenPos = camera.transform.position.x;
+        float minBound = camera.transform.position.x - width / 2f;
+        float maxBound = camera.transform.position.x + width / 2f;
+        if (transform.position.x > maxBound || transform.position.x < minBound)
+        {
+            transform.position = new Vector2(-transform.position.x, transform.position.y);
+        }
     }
 
     private void FixedUpdate()

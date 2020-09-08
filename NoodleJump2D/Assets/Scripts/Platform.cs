@@ -21,7 +21,7 @@ public class Platform : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         Player p = collision.gameObject.GetComponent<Player>();
-        if (p != null) Debug.Log(p.GetComponent<Rigidbody2D>().velocity.y);
+        //if (p != null) Debug.Log(p.GetComponent<Rigidbody2D>().velocity.y);
         if (p != null && !p.IsAscending())
         {
             p.Jump(jumpForce);
