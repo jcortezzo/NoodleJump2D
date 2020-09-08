@@ -5,7 +5,7 @@ using UnityEngine;
 public class Platform : MonoBehaviour
 {
     [SerializeField] private float jumpForce;
-
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -15,7 +15,10 @@ public class Platform : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (AutoLevelGenerator.Instance.PlayerPosition().y > this.transform.position.y + 10)
+        {
+            Destroy(this.gameObject);
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

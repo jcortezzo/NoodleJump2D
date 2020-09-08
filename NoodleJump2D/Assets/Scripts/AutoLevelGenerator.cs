@@ -4,12 +4,18 @@ using UnityEngine;
 
 public class AutoLevelGenerator : MonoBehaviour
 {
+    public static AutoLevelGenerator Instance;
+
     [SerializeField] private GameObject normalPlatformPrefab;
     [SerializeField] private Player player;
-    [SerializeField] private float yOffset;
+    [SerializeField] private int yOffset;
 
     private Vector2 previousPosition;
 
+    public void Awake()
+    {
+        if(Instance == null) { Instance = this; }
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -27,13 +33,17 @@ public class AutoLevelGenerator : MonoBehaviour
 
     private void GeneratePlatforms()
     {
-        int platforms = 10;
+        int platforms = Random.Range(10, 20);
         for(int i = 0; i < platforms; i++)
         {
-            Vector2 position = new Vector2(Random.Range(-2, 2), previousPosition.y + yOffset);
+            Vector2 position = new Vector2(Random.Range(-4, 4), previousPosition.y + Random.Range(0, yOffset));
             Instantiate(normalPlatformPrefab, position, Quaternion.identity);
             previousPosition = position;
         }
     }
 
+    public Vector3 PlayerPosition()
+    {
+        return player.transform.position;
+    }
 }
