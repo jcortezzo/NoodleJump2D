@@ -9,6 +9,7 @@ public class AutoLevelGenerator : MonoBehaviour
     [SerializeField] private GameObject normalPlatformPrefab;
     [SerializeField] private Player player;
     [SerializeField] private int yOffset;
+    [SerializeField] private float platformWidth;
 
     private Vector2 previousPosition;
 
@@ -34,11 +35,19 @@ public class AutoLevelGenerator : MonoBehaviour
     private void GeneratePlatforms()
     {
         int platforms = Random.Range(10, 20);
-        for(int i = 0; i < platforms; i++)
+        while(platforms > 0)
         {
-            Vector2 position = new Vector2(Random.Range(-4, 4), previousPosition.y + Random.Range(0, yOffset));
-            Instantiate(normalPlatformPrefab, position, Quaternion.identity);
-            previousPosition = position;
+            int randX = Random.Range(1, 4);
+            float x = -8;
+            while(randX > 0)
+            {
+                x += (Random.Range(0f, 3f) + platformWidth);
+                Vector2 position = new Vector2(x, previousPosition.y);
+                Instantiate(normalPlatformPrefab, position, Quaternion.identity);
+                platforms--;
+                randX--;
+            }
+            previousPosition = new Vector2(previousPosition.x , previousPosition.y + Random.Range(1f, yOffset));
         }
     }
 

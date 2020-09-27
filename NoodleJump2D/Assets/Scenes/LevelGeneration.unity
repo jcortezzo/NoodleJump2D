@@ -284,6 +284,7 @@ MonoBehaviour:
     type: 3}
   player: {fileID: 304789177}
   yOffset: 3
+  platformWidth: 3
 --- !u!1001 &5835863852752939618
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -355,6 +356,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Constraints
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5581530318358557873, guid: 733311bebc92bdb4c97db636e5713826,
+        type: 3}
+      propertyPath: m_GravityScale
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8597268205455209560, guid: 733311bebc92bdb4c97db636e5713826,
         type: 3}

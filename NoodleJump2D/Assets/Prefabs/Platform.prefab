@@ -141,4 +141,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7157577d4e9e1f448c7d7ec886da694, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpForce: 125
+  jumpForce: 150
