@@ -1059,7 +1059,7 @@ MonoBehaviour:
   platformWidth: 3
   enemyPrefab: {fileID: 1729064617931958958, guid: f068db28b4bbbad4bae0b12c256106dd,
     type: 3}
-  spawnChance: 0.1
+  spawnChance: 0.102
 --- !u!1001 &5835863852752939618
 PrefabInstance:
   m_ObjectHideFlags: 0

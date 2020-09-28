@@ -46,7 +46,10 @@ public class AutoLevelGenerator : MonoBehaviour
             {
                 x += (Random.Range(0f, 3f) + platformWidth);
                 Vector2 position = new Vector2(x, previousPosition.y);
-                if(Random.Range(0f, 1f) < 0.2f && position.y > player.transform.position.y) Instantiate(enemyPrefab, position + Vector2.up, Quaternion.identity);
+                if (Random.Range(0f, 1f) < spawnChance && position.y > player.transform.position.y)
+                {
+                    Instantiate(enemyPrefab, position + Vector2.up, Quaternion.identity);
+                }
                 Instantiate(normalPlatformPrefab, position, Quaternion.identity);
                 platforms--;
                 randX--;

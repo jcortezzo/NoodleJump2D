@@ -11,12 +11,14 @@ public class Player : MonoBehaviour
     
     private Rigidbody2D rb;
     private Camera camera;
+
     public bool IsDead { get; private set; }
+    private Animator anim;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-
+        anim = GetComponent<Animator>();
         camera = Camera.main;
     }
 
@@ -31,17 +33,24 @@ public class Player : MonoBehaviour
         float height = 2f * camera.orthographicSize;
         float width = height * camera.aspect;
 
-        float minBound = camera.transform.position.x - width / 2f;
-        float maxBound = camera.transform.position.x + width / 2f;
-        if (transform.position.x > maxBound)
+        float minXBound = camera.transform.position.x - width / 2f;
+        float maxXBound = camera.transform.position.x + width / 2f;
+
+        float minY = camera.transform.position.y - height / 2f;
+
+        if (transform.position.x > maxXBound)
         {
-            transform.position = new Vector2(minBound, transform.position.y);
+            transform.position = new Vector2(minXBound, transform.position.y);
         }
-        else if (transform.position.x < minBound)
+        else if (transform.position.x < minXBound)
         {
-            transform.position = new Vector2(maxBound, transform.position.y);
+            transform.position = new Vector2(maxXBound, transform.position.y);
         }
+
+        if (transform.position.y < minY) Die();
     }
+
+    
 
     private void FixedUpdate()
     {
@@ -59,6 +68,8 @@ public class Player : MonoBehaviour
     {
         rb.velocity = new Vector2(rb.velocity.x, 0);
         rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+
+        anim.Play("bounce", 1, 0f);
     }
 
     public bool IsAscending()
