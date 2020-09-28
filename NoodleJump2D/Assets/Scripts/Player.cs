@@ -11,12 +11,13 @@ public class Player : MonoBehaviour
     
     private Rigidbody2D rb;
     private Camera camera;
+    private Animator anim;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-
+        anim = GetComponent<Animator>();
         camera = Camera.main;
     }
 
@@ -59,6 +60,9 @@ public class Player : MonoBehaviour
     {
         rb.velocity = new Vector2(rb.velocity.x, 0);
         rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+        //anim.Update(0);
+        //anim.
+        anim.Play("bounce", 1);
     }
 
     public bool IsAscending()
