@@ -11,6 +11,9 @@ public class AutoLevelGenerator : MonoBehaviour
     [SerializeField] private int yOffset;
     [SerializeField] private float platformWidth;
 
+    [SerializeField] private GameObject enemyPrefab;
+    [Range(0f, 1f)]
+    [SerializeField] private float spawnChance; 
     private Vector2 previousPosition;
 
     public void Awake()
@@ -43,6 +46,7 @@ public class AutoLevelGenerator : MonoBehaviour
             {
                 x += (Random.Range(0f, 3f) + platformWidth);
                 Vector2 position = new Vector2(x, previousPosition.y);
+                if(Random.Range(0f, 1f) < 0.2f) Instantiate(enemyPrefab, position + Vector2.up, Quaternion.identity);
                 Instantiate(normalPlatformPrefab, position, Quaternion.identity);
                 platforms--;
                 randX--;
