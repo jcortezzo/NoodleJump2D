@@ -8,7 +8,7 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         int rand = Random.Range(1, 7);
-        GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/enemy" + rand);
+        GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/fork");//enemy" + rand);
     }
 
     // Update is called once per frame
