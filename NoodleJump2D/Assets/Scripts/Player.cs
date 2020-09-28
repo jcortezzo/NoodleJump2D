@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
     
     private Rigidbody2D rb;
     private Camera camera;
-
+    public bool IsDead { get; private set; }
     // Start is called before the first frame update
     void Start()
     {
@@ -64,5 +64,12 @@ public class Player : MonoBehaviour
     public bool IsAscending()
     {
         return rb.velocity.y > JUMP_EPSILON;
+    }
+
+    public void Die()
+    {
+        GetComponent<Collider2D>().enabled = false;
+        speed = 0;
+        IsDead = true;
     }
 }
